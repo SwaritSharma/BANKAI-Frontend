@@ -1,11 +1,8 @@
 import axios from "axios";
 import { toast } from "sonner";
 
-const BASE =
-    (typeof window !== "undefined" && window.__env__?.REACT_APP_BACKEND_URL) ||
-    process.env.REACT_APP_BACKEND_URL ||
-    "http://localhost:8081";
-export const API = BASE.endsWith("/api") ? BASE : `${BASE}/api`;
+const BASE = "http://65.2.183.244:8081";
+export const API = `${BASE}/api`;
 
 export const api = axios.create({
     baseURL: API,
