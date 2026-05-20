@@ -322,11 +322,11 @@ function BuyForm({ vendors, balance, userId, onDone }) {
                     <div className="flex items-center gap-2 max-w-md">
                         <Input
                             type="number"
-                            step="0.1"
-                            min="0.1"
+                            step="0.001"
+                            min="0.001"
                             value={qty}
                             onChange={(e) => setQty(e.target.value)}
-                            placeholder="0.0"
+                            placeholder="0.000"
                             className="mono text-lg"
                             data-testid="buy-quantity-input"
                         />
@@ -499,12 +499,12 @@ function SellForm({ holdings, userId, onDone }) {
                     <div className="flex items-center gap-2 max-w-md">
                         <Input
                             type="number"
-                            step="0.1"
-                            min="0.1"
+                            step="0.001"
+                            min="0.001"
                             value={qty}
                             onChange={(e) => setQty(e.target.value)}
                             disabled={!holding}
-                            placeholder="0.0"
+                            placeholder="0.000"
                             className="mono text-lg"
                             data-testid="sell-quantity-input"
                         />

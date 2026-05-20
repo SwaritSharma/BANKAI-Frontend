@@ -302,8 +302,8 @@ function BuyPhysical({ vendors, addresses, userId, balance, onDone }) {
                 <Field label="Quantity (grams)" hint="Free insured delivery on orders ≥ 10g">
                     <Input
                         type="number"
-                        step="0.1"
-                        min="0.1"
+                        step="0.001"
+                        min="0.001"
                         value={qty}
                         onChange={(e) => setQty(e.target.value)}
                         className="mono text-lg"
@@ -561,8 +561,8 @@ function ConvertPhysical({ holdings, addresses, userId, onDone }) {
                 <Field label="Quantity (grams)">
                     <Input
                         type="number"
-                        step="0.1"
-                        min="0.1"
+                        step="0.001"
+                        min="0.001"
                         value={qty}
                         onChange={(e) => setQty(e.target.value)}
                         disabled={!holding}
