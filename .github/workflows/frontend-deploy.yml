@@ -1,0 +1,36 @@
+name: Deploy Frontend to EC2
+
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Pull and deploy on EC2
+        uses: appleboy/ssh-action@v1.0.3
+        with:
+          host: ${{ secrets.EC2_HOST }}
+          username: ${{ secrets.EC2_USER }}
+          key: ${{ secrets.EC2_SSH_KEY }}
+          script: |
+            cd BANKAI-Frontend
+            git pull origin main
+
+            sudo docker build -t bankai-frontend:latest .
+
+            sudo docker stop bankai-frontend 2>/dev/null || true
+            sudo docker rm bankai-frontend 2>/dev/null || true
+
+            sudo docker run -d \
+              --name bankai-frontend \
+              --restart unless-stopped \
+              -p 80:80 \
+              bankai-frontend:latest
+
+            sudo docker image prune -f
+            echo "✓ Deployed successfully"
+            sudo docker ps --filter name=bankai-frontend
