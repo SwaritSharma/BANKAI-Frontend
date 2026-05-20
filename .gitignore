@@ -1,0 +1,11 @@
+.idea/
+node_modules/
+build/
+
+# Environment files (may contain secrets)
+.env
+.env.local
+.env.*.local
+
+# OS
+.DS_Store

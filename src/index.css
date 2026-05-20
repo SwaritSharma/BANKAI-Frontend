@@ -1,0 +1,274 @@
+@import url("https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;700&display=swap");
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+body {
+    margin: 0;
+    font-family: "Space Grotesk", system-ui, sans-serif;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+}
+code,
+.mono {
+    font-family: "JetBrains Mono", monospace;
+    font-feature-settings: "tnum";
+}
+
+@layer base {
+    :root {
+        /* Light mode — refined banking */
+        --background: 210 25% 98%;
+        --foreground: 215 30% 14%;
+        --card: 0 0% 100%;
+        --card-foreground: 215 30% 14%;
+        --popover: 0 0% 100%;
+        --popover-foreground: 215 30% 14%;
+        --primary: 216 65% 36%;
+        --primary-foreground: 0 0% 100%;
+        --secondary: 215 20% 94%;
+        --secondary-foreground: 215 30% 14%;
+        --muted: 215 20% 94%;
+        --muted-foreground: 215 15% 42%;
+        --accent: 38 65% 47%;
+        --accent-foreground: 0 0% 100%;
+        --destructive: 0 70% 48%;
+        --destructive-foreground: 0 0% 100%;
+        --success: 152 55% 38%;
+        --warning: 38 80% 48%;
+        --border: 215 20% 86%;
+        --input: 215 20% 86%;
+        --ring: 216 65% 36%;
+        --chart-1: 216 65% 36%;
+        --chart-2: 38 65% 47%;
+        --chart-3: 152 55% 38%;
+        --chart-4: 260 35% 50%;
+        --chart-5: 0 70% 48%;
+        --radius: 0.5rem;
+        --grid-color: 215 20% 90%;
+    }
+    .dark {
+        /* Dark mode — Bloomberg/banking terminal */
+        --background: 220 25% 7%;
+        --foreground: 215 25% 92%;
+        --card: 220 22% 11%;
+        --card-foreground: 215 25% 92%;
+        --popover: 220 22% 11%;
+        --popover-foreground: 215 25% 92%;
+        --primary: 212 78% 58%;
+        --primary-foreground: 220 25% 7%;
+        --secondary: 220 18% 16%;
+        --secondary-foreground: 215 25% 92%;
+        --muted: 220 18% 16%;
+        --muted-foreground: 215 15% 60%;
+        --accent: 38 78% 56%;
+        --accent-foreground: 220 25% 7%;
+        --destructive: 0 70% 55%;
+        --destructive-foreground: 215 25% 92%;
+        --success: 152 60% 48%;
+        --warning: 38 85% 55%;
+        --border: 220 18% 20%;
+        --input: 220 18% 20%;
+        --ring: 212 78% 58%;
+        --chart-1: 212 78% 58%;
+        --chart-2: 38 78% 56%;
+        --chart-3: 152 60% 48%;
+        --chart-4: 260 50% 68%;
+        --chart-5: 0 70% 55%;
+        --grid-color: 220 18% 14%;
+    }
+}
+
+@layer base {
+    * {
+        @apply border-border;
+    }
+    body {
+        @apply bg-background text-foreground;
+    }
+}
+
+/* Animations — kept subtle */
+@keyframes fade-in-up {
+    from {
+        opacity: 0;
+        transform: translateY(8px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+@keyframes fade-in {
+    from {
+        opacity: 0;
+    }
+    to {
+        opacity: 1;
+    }
+}
+@keyframes slide-in-left {
+    from {
+        opacity: 0;
+        transform: translateX(-12px);
+    }
+    to {
+        opacity: 1;
+        transform: translateX(0);
+    }
+}
+@keyframes pulse-ring {
+    0% {
+        box-shadow: 0 0 0 0 hsl(var(--success) / 0.5);
+    }
+    70% {
+        box-shadow: 0 0 0 8px hsl(var(--success) / 0);
+    }
+    100% {
+        box-shadow: 0 0 0 0 hsl(var(--success) / 0);
+    }
+}
+
+.animate-fade-in-up {
+    animation: fade-in-up 0.4s ease-out both;
+}
+.animate-fade-in {
+    animation: fade-in 0.3s ease-out both;
+}
+.animate-slide-in-left {
+    animation: slide-in-left 0.35s ease-out both;
+}
+.animate-pulse-ring {
+    animation: pulse-ring 1.8s infinite;
+}
+.animate-glow,
+.animate-tick {
+    /* legacy aliases — kept as no-ops to avoid breaking imports */
+    animation: none;
+}
+
+.stagger > * {
+    animation: fade-in-up 0.4s ease-out both;
+}
+.stagger > *:nth-child(1) {
+    animation-delay: 0.02s;
+}
+.stagger > *:nth-child(2) {
+    animation-delay: 0.06s;
+}
+.stagger > *:nth-child(3) {
+    animation-delay: 0.1s;
+}
+.stagger > *:nth-child(4) {
+    animation-delay: 0.14s;
+}
+.stagger > *:nth-child(5) {
+    animation-delay: 0.18s;
+}
+.stagger > *:nth-child(6) {
+    animation-delay: 0.22s;
+}
+.stagger > *:nth-child(7) {
+    animation-delay: 0.26s;
+}
+.stagger > *:nth-child(8) {
+    animation-delay: 0.3s;
+}
+
+/* Grid background — very subtle */
+.bg-grid {
+    background-image:
+        linear-gradient(hsl(var(--grid-color)) 1px, transparent 1px),
+        linear-gradient(
+            90deg,
+            hsl(var(--grid-color)) 1px,
+            transparent 1px
+        );
+    background-size: 56px 56px;
+    background-position: -1px -1px;
+}
+.bg-grid-fade {
+    mask-image: radial-gradient(
+        ellipse 85% 55% at 50% 0%,
+        #000 25%,
+        transparent 75%
+    );
+    -webkit-mask-image: radial-gradient(
+        ellipse 85% 55% at 50% 0%,
+        #000 25%,
+        transparent 75%
+    );
+}
+
+/* Structured card — no glass-blur. Solid with crisp border. */
+.glass {
+    background: hsl(var(--card));
+    border: 1px solid hsl(var(--border));
+}
+
+/* Accent text — color only, no glow */
+.neon-cyan,
+.accent-primary {
+    color: hsl(var(--primary));
+}
+.neon-gold,
+.accent-gold {
+    color: hsl(var(--accent));
+}
+
+/* Status dot */
+.dot {
+    display: inline-block;
+    width: 7px;
+    height: 7px;
+    border-radius: 9999px;
+}
+
+/* Scrollbar */
+::-webkit-scrollbar {
+    width: 8px;
+    height: 8px;
+}
+::-webkit-scrollbar-track {
+    background: transparent;
+}
+::-webkit-scrollbar-thumb {
+    background: hsl(var(--border));
+    border-radius: 8px;
+}
+::-webkit-scrollbar-thumb:hover {
+    background: hsl(var(--muted-foreground) / 0.5);
+}
+
+/* Recharts tweaks */
+.recharts-cartesian-grid line {
+    stroke: hsl(var(--border)) !important;
+    opacity: 0.5;
+}
+.recharts-text {
+    fill: hsl(var(--muted-foreground)) !important;
+}
+.recharts-tooltip-wrapper {
+    outline: none !important;
+}
+
+/* Smooth interactions */
+button,
+a {
+    transition:
+        color 0.15s,
+        background-color 0.15s,
+        border-color 0.15s,
+        transform 0.15s,
+        box-shadow 0.15s;
+}
+.btn-hover:hover {
+    transform: translateY(-1px);
+}
+
+@layer base {
+    [data-debug-wrapper="true"] {
+        display: contents !important;
+    }
+}
