@@ -1,7 +1,10 @@
 import axios from "axios";
 import { toast } from "sonner";
 
-const BASE = process.env.REACT_APP_BACKEND_URL || "http://localhost:8081";
+const BASE =
+    (typeof window !== "undefined" && window.__env__?.REACT_APP_BACKEND_URL) ||
+    process.env.REACT_APP_BACKEND_URL ||
+    "http://localhost:8081";
 export const API = BASE.endsWith("/api") ? BASE : `${BASE}/api`;
 
 export const api = axios.create({
